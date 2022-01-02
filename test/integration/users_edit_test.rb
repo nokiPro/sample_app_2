@@ -6,17 +6,17 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "unsuccessful edit" do
-    get edit_user_path(@user)
-    assert_template 'users/edit'
-    patch user_path(@user), params: { user: { name:  "",
-                                              email: "foo@invalid",
-                                              password:              "foo",
-                                              password_confirmation: "bar" } }
+  # test "unsuccessful edit" do
+  #   get edit_user_path(@user)
+  #   assert_template 'users/edit'
+  #   patch user_path(@user), params: { user: { name:  "",
+  #                                             email: "foo@invalid",
+  #                                             password:              "foo",
+  #                                             password_confirmation: "bar" } }
 
-    assert_template 'users/edit'
-    assert_select "div.alert", "The form contains 4 errors."
-  end
+  #   assert_template 'users/edit'
+  #   assert_select "div.alert", "The form contains 4 errors."
+  # end
   
   test "successful edit with friendly forwarding" do
     get edit_user_path(@user)
@@ -33,5 +33,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
+  end
+  
+  test "" do
+    get users_path
   end
 end
